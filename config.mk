@@ -14,24 +14,6 @@
 
 LOCAL_PATH := vendor/pixelstyle
 
-# Prebuilt Packages
-PRODUCT_PACKAGES += \
-    NexusLauncherRelease \
-    NexusWallpapersStubPrebuilt2019Static \
-    PixelThemesStub2019 \
-    SafetyHubPrebuilt \
-    SettingsIntelligenceGooglePrebuilt
-
-ifeq ($(TARGET_GAPPS_ARCH),arm64)
-PRODUCT_PACKAGES += \
-    MatchmakerPrebuiltPixel4
-endif
-
-# Offline charger
-PRODUCT_PACKAGES += \
-    charger_res_images \
-    product_charger_res_images
-
 # Bootanimation
 ifeq ($(TARGET_BOOT_ANIMATION_RES),1080)
      PRODUCT_COPY_FILES += $(LOCAL_PATH)/bootanimation/bootanimation_1080.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation.zip
@@ -92,12 +74,3 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.error.receiver.system.apps=com.google.android.gms \
     ro.atrace.core.services=com.google.android.gms,com.google.android.gms.ui,com.google.android.gms.persistent
 
-# Include product overlays
-PRODUCT_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay
-
-# Inherit from audio config
-$(call inherit-product, vendor/pixelstyle/config/audio.mk)
-
-# Inherit from fonts config
-$(call inherit-product, vendor/pixelstyle/config/fonts.mk)
